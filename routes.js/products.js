@@ -1,13 +1,12 @@
 const express = require('express');
-const router = express.Router();
+const productRoutes = express.Router();
 
-router.get('/', (req, res) => {
+productRoutes.get('/', (req, res) => {
   res.send('Here is the list of all products.');
 });
 
-router.post('/', (req, res) => {
+productRoutes.post('/', (req, res) => {
   res.send('A new product has been added.');
 });
 
-module.exports = router;
-
+module.exports = productRoutes;

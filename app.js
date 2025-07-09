@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const productRoutes = require('./routes/products');
-const categoryRoutes = require('./routes/categories');
+const productRoutes = require('./routes.js/products');
+const categoryRoutes = require('./routes.js/categories');
 
 app.use(express.json());
 
@@ -10,7 +10,7 @@ app.use('/products', productRoutes);
 app.use('/categories', categoryRoutes);
 
 // Wildcard route for undefined paths
-app.use('*', (req, res) => {
+app.use( (req, res) => {
   res.status(404).send('<h1>404 - Page Not Found</h1>');
 });
 
