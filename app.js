@@ -3,22 +3,12 @@ const express = require('express');
 const app = express();
 const port = 4000;
 
-// Import the router
-const productRoutes = require('./routes/products');
+// Middleware to parse JSON data
+app.use(express.json());
 
-// Middleware: Logging
-app.use((req, res, next) => {
-  console.log(`${req.method} request made to ${req.url}`);
-  next(); // Important!
-});
-
-// Use the product routes
-app.use('/products', productRoutes);
-
-// Wildcard route (404 handler)
-app.use((req, res) => {
-  res.status(404).send('<h1>404 - Page Not Found</h1>');
-});
+// Import and use the books router
+const bookRoutes = require('./routes/books');
+app.use('/books', bookRoutes);
 
 // Start the server
 app.listen(port, () => {
