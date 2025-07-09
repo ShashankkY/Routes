@@ -1,20 +1,19 @@
 const express = require('express');
 const app = express();
-const productRoutes = require('./routes.js/products');
-const categoryRoutes = require('./routes.js/categories');
+const port = 3000;
 
-app.use(express.json());
-
-// Mount routes
-app.use('/products', productRoutes);
-app.use('/categories', categoryRoutes);
-
-// Wildcard route for undefined paths
-app.use( (req, res) => {
-  res.status(404).send('<h1>404 - Page Not Found</h1>');
+// Basic route
+app.get('/home', (req, res) => {
+  res.send('Hello World!');
 });
 
-// Start server
-app.listen(4000, () => {
-  console.log('Server is running on http://localhost:4000');
+// Route parameter with query parameter
+app.get('/contact/:userid', (req, res) => {
+  const id = req.params.userid;       // Get route param
+  const role = req.query.role || 'Guest'; // Get query param (default: Guest)
+  res.send(`Hello from Contact Page for user ${id} with role ${role}`);
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
 });
