@@ -1,19 +1,26 @@
+// app.js
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 4000;
 
-// Basic route
-app.get('/home', (req, res) => {
-  res.send('Hello World!');
+// Import the router
+const productRoutes = require('./routes/products');
+
+// Middleware: Logging
+app.use((req, res, next) => {
+  console.log(`${req.method} request made to ${req.url}`);
+  next(); // Important!
 });
 
-// Route parameter with query parameter
-app.get('/contact/:userid', (req, res) => {
-  const id = req.params.userid;       // Get route param
-  const role = req.query.role || 'Guest'; // Get query param (default: Guest)
-  res.send(`Hello from Contact Page for user ${id} with role ${role}`);
+// Use the product routes
+app.use('/products', productRoutes);
+
+// Wildcard route (404 handler)
+app.use((req, res) => {
+  res.status(404).send('<h1>404 - Page Not Found</h1>');
 });
 
+// Start the server
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

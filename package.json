@@ -6,12 +6,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShashankkY/Routes.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShashankkY/Routes/issues"
+  },
+  "homepage": "https://github.com/ShashankkY/Routes#readme",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0",
-    "http": "^0.0.1-security"
+    "express": "^5.1.0"
   }
 }
