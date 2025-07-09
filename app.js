@@ -1,30 +1,20 @@
 const express = require('express');
 const app = express();
+const productRoutes = require('./routes/products');
+const categoryRoutes = require('./routes/categories');
 
-// Middleware to parse JSON in POST requests (optional but good practice)
 app.use(express.json());
 
-// GET /orders
-app.get('/orders', (req, res) => {
-  res.send('Here is the list of all orders.');
+// Mount routes
+app.use('/products', productRoutes);
+app.use('/categories', categoryRoutes);
+
+// Wildcard route for undefined paths
+app.use('*', (req, res) => {
+  res.status(404).send('<h1>404 - Page Not Found</h1>');
 });
 
-// POST /orders
-app.post('/orders', (req, res) => {
-  res.send('A new order has been created.');
-});
-
-// GET /users
-app.get('/users', (req, res) => {
-  res.send('Here is the list of all users.');
-});
-
-// POST /users
-app.post('/users', (req, res) => {
-  res.send('A new user has been added.');
-});
-
-// Start the server
-app.listen(3000, () => {
-  console.log('✅ Server is running on http://localhost:3000');
+// Start server
+app.listen(4000, () => {
+  console.log('Server is running on http://localhost:4000');
 });
